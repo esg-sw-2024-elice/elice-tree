@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "trailingComma": "all"
+      }
+    ]
+  },
+  "extends": ["react-app", "react-app/jest", "plugin:prettier/recommended"]
+}
