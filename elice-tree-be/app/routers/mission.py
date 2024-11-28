@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import APIKeyHeader
-from app.utils.auth import decode_access_token
+from app.utils.auth import verify_user_from_token
 from app.utils.function import make_base_response
 from app.mock.data import mock_missions
 from app.schemas.mission import MissionRequest
@@ -29,8 +29,7 @@ async def get_mission(
     token: str = Depends(APIKeyHeader(name="Authorization"))
 ):
     try:
-        payload = decode_access_token(token)
-        user_id = payload.get("sub")
+        user_id = verify_user_from_token(token)
         if not user_id:
             return make_base_response(400, "Invalid Authorization")
         mission = next((m for m in mock_missions if m["id"] == id), None)
@@ -48,8 +47,7 @@ async def get_mission(
 })
 async def get_mission_list(token: str = Depends(APIKeyHeader(name="Authorization"))):
     try:
-        payload = decode_access_token(token)
-        user_id = payload.get("sub")
+        user_id = verify_user_from_token(token)
         if not user_id:
             return make_base_response(400, "Invalid token payload")
         return make_base_response(200, "Mission list retrieved successfully", mock_missions)
@@ -68,8 +66,7 @@ async def complete_mission(
     token: str = Depends(APIKeyHeader(name="Authorization"))
 ):
     try:
-        payload = decode_access_token(token)
-        user_id = payload.get("sub")
+        user_id = verify_user_from_token(token)
         if not user_id:
             return make_base_response(400, "Invalid token payload")
         mission = next((m for m in mock_missions if m["id"] == request.id), None)
@@ -92,8 +89,7 @@ async def delete_mission(
     token: str = Depends(APIKeyHeader(name="Authorization"))
 ):
     try:
-        payload = decode_access_token(token)
-        user_id = payload.get("sub")
+        user_id = verify_user_from_token(token)
         if not user_id:
             return make_base_response(400, "Invalid token payload")
         mission = next((m for m in mock_missions if m["id"] == request.id), None)
@@ -103,3 +99,4 @@ async def delete_mission(
         return make_base_response(200, "Mission deleted successfully")
     except Exception:
         raise HTTPException(status_code=500, detail="Internal Server Error")
+        
