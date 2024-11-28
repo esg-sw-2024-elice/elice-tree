@@ -12,6 +12,7 @@ from app.schemas.example import (
     example_mission_delete,
     example_400,
     example_404,
+    example_500
 )
 
 router = APIRouter()
@@ -21,7 +22,7 @@ router = APIRouter()
     200: {"description": "Mission retrieved successfully", "content": {"application/json": {"example": example_mission_get}}},
     400: {"description": "Invalid Authorization", "content": {"application/json": {"example": example_400}}},
     404: {"description": "Mission not found", "content": {"application/json": {"example": example_404}}},
-    500: {"description": "Internal Server Error", "content": {"application/json": {"example": {"code": 500, "message": "Internal Server Error"}}}}
+    500: {"description": "Internal Server Error", "content": {"application/json": {"example": example_500}}}
 })
 async def get_mission(
     id: int,
@@ -43,7 +44,7 @@ async def get_mission(
 @router.get("/api/mission/list", response_model=BaseResponse, responses={
     200: {"description": "Mission list retrieved successfully", "content": {"application/json": {"example": example_mission_list}}},
     400: {"description": "Invalid Authorization", "content": {"application/json": {"example": example_400}}},
-    500: {"description": "Internal Server Error", "content": {"application/json": {"example": {"code": 500, "message": "Internal Server Error"}}}}
+    500: {"description": "Internal Server Error", "content": {"application/json": {"example": example_500}}}
 })
 async def get_mission_list(token: str = Depends(APIKeyHeader(name="Authorization"))):
     try:
@@ -60,7 +61,7 @@ async def get_mission_list(token: str = Depends(APIKeyHeader(name="Authorization
     200: {"description": "Mission status updated successfully", "content": {"application/json": {"example": example_mission_patch}}},
     400: {"description": "Invalid Authorization", "content": {"application/json": {"example": example_400}}},
     404: {"description": "Mission not found", "content": {"application/json": {"example": example_404}}},
-    500: {"description": "Internal Server Error", "content": {"application/json": {"example": {"code": 500, "message": "Internal Server Error"}}}}
+    500: {"description": "Internal Server Error", "content": {"application/json": {"example": example_500}}}
 })
 async def complete_mission(
     request: MissionRequest,
@@ -84,7 +85,7 @@ async def complete_mission(
     200: {"description": "Mission deleted successfully", "content": {"application/json": {"example": example_mission_delete}}},
     400: {"description": "Invalid Authorization", "content": {"application/json": {"example": example_400}}},
     404: {"description": "Mission not found", "content": {"application/json": {"example": example_404}}},
-    500: {"description": "Internal Server Error", "content": {"application/json": {"example": {"code": 500, "message": "Internal Server Error"}}}}
+    500: {"description": "Internal Server Error", "content": {"application/json": {"example": example_500}}}
 })
 async def delete_mission(
     request: MissionRequest,
