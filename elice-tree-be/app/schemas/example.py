@@ -1,14 +1,21 @@
 example_regist = {
     "code": 200,
-    "message": "Successful user",
+    "message": "Regist Success",
     "result": {}
 }
 
 
 example_login = {
     "code": 200,
-    "message": "Successful user",
+    "message": "Login Success",
     "result": {"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJpZCIsImV4cCI6MTczMjE3MjM4NH0.nJR_j3_h43tSbXbfI2zjgO_KgNg2h2iASxcurafT9qs"}
+}
+
+
+example_logout = {
+    "code": 200,
+    "message": "Logout Success",
+    "result": {}
 }
 
 
