@@ -1,14 +1,10 @@
 from pydantic import BaseModel
 
 
-class LoginRequest(BaseModel):
+class AuthRequest(BaseModel):
     id: str
     password: str
 
 
-class LoginResponse(BaseModel):
+class AuthResponse(BaseModel):
     accessToken: str
-
-
-class LogoutResponse(BaseModel):
-    isLogoutSuccess: bool
