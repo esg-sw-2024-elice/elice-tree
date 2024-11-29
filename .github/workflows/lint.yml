@@ -1,0 +1,33 @@
+name: Lint Code
+
+on:
+  push:
+    branches:
+      - master
+      - develop-fe
+  pull_request:
+    branches:
+      - master
+      - develop-fe
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: elice-tree-fe
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.11.0
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run linter
+        run: yarn lint

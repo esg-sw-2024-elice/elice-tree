@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 import uvicorn
 from app.routers import auth, mission
+from fastapi.middleware.cors import CORSMiddleware
 
 
 _openapi = FastAPI.openapi
+
+
 def openapi(self: FastAPI):
     _openapi(self)
 
@@ -16,11 +19,24 @@ def openapi(self: FastAPI):
 
     return self.openapi_schema
 
+
 FastAPI.openapi = openapi
 
 app = FastAPI()
 app.include_router(auth.router, tags=["auth"])
 app.include_router(mission.router, tags=["mission"])
+
+origins = [
+    "http://localhost:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 if __name__ == "__main__":
