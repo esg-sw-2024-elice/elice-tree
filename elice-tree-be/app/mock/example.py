@@ -70,6 +70,6 @@ example_400 = {
 
 example_500= {
     "code": 500,
-    "message": "Server Error",
+    "message": "Internal Server Error",
     "result": {}
 }

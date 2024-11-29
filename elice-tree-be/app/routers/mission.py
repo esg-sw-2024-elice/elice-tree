@@ -1,11 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import APIKeyHeader
-from app.utils.auth import verify_user_from_token
-from app.utils.function import make_base_response
 from app.mock.data import mock_missions
 from app.schemas.mission import MissionRequest
 from app.schemas.base import BaseResponse
-from app.schemas.example import (
+from app.utils.function import (
+    verify_user_from_token,
+    make_base_response
+)
+from app.mock.example import (
     example_mission_get,
     example_mission_list,
     example_mission_patch,
@@ -16,6 +18,9 @@ from app.schemas.example import (
 )
 
 router = APIRouter()
+
+
+# TODO: /api/mission/edit
 
 
 @router.get("/api/mission/get", response_model=BaseResponse, responses={
@@ -37,7 +42,7 @@ async def get_mission(
             return make_base_response(404, "Mission not found")
         return make_base_response(200, "Mission retrieved successfully", mission)
     except Exception:
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        return make_base_response(500, "Internal Server Error")
 
 
 @router.get("/api/mission/list", response_model=BaseResponse, responses={
@@ -49,10 +54,10 @@ async def get_mission_list(token: str = Depends(APIKeyHeader(name="Authorization
     try:
         user_id = verify_user_from_token(token)
         if not user_id:
-            return make_base_response(400, "Invalid token payload")
+            return make_base_response(400, "Invalid token")
         return make_base_response(200, "Mission list retrieved successfully", mock_missions)
     except Exception:
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        return make_base_response(500, "Internal Server Error")
 
 
 @router.patch("/api/mission/complete", response_model=BaseResponse, responses={
@@ -68,14 +73,14 @@ async def complete_mission(
     try:
         user_id = verify_user_from_token(token)
         if not user_id:
-            return make_base_response(400, "Invalid token payload")
+            return make_base_response(400, "Invalid token")
         mission = next((m for m in mock_missions if m["id"] == request.id), None)
         if not mission:
             return make_base_response(404, "Mission not found")
         mission["isCompleted"] = not mission["isCompleted"]
         return make_base_response(200, "Mission status updated successfully")
     except Exception:
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        return make_base_response(500, "Internal Server Error")
 
 
 @router.delete("/api/mission/delete", response_model=BaseResponse, responses={
@@ -91,12 +96,11 @@ async def delete_mission(
     try:
         user_id = verify_user_from_token(token)
         if not user_id:
-            return make_base_response(400, "Invalid token payload")
+            return make_base_response(400, "Invalid token")
         mission = next((m for m in mock_missions if m["id"] == request.id), None)
         if not mission:
             return make_base_response(404, "Mission not found")
         mock_missions.remove(mission)
         return make_base_response(200, "Mission deleted successfully")
     except Exception:
-        raise HTTPException(status_code=500, detail="Internal Server Error")
-        
+        return make_base_response(500, "Internal Server Error")
