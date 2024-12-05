@@ -19,7 +19,7 @@ import {
   TEXT_SINGUP_HEADING1_TITLE,
 } from '@/constants';
 import imgLogoElice from '@/assets/images/logo-elice.png';
-import Modal, { TActionsModal, TDialog } from '@/components/shared/Modal';
+import Modal, { TActionsModal } from '@/components/shared/Modal';
 import { validateIsEmpty, validatePassword } from '@/utils';
 
 export default function SignUp() {
@@ -29,37 +29,37 @@ export default function SignUp() {
   const refUserPassword = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { signUp } = useAuth();
+  const handleShowModalSuccess = (title: string, msg: string) => {
+    refModalSuccess.current?.show(title, msg);
+  };
+  const handleShowModalError = (title: string, msg: string) => {
+    refModalError.current?.show(title, msg);
+  };
   const handleClickBtnSignUp = () => {
     const enteredUserId = refUserId.current?.value;
     const enteredUserPassword = refUserPassword.current?.value;
     if (!validateIsEmpty(enteredUserId)) {
-      handleShowModalError('Error', MSG_ERROR_VALIDATION_USER_ID, 'error');
+      handleShowModalError('Error', MSG_ERROR_VALIDATION_USER_ID);
       return;
     }
     if (!validateIsEmpty(enteredUserPassword)) {
-      handleShowModalError('Error', MSG_ERROR_VALIDATION_USER_PASSWORD, 'error');
+      handleShowModalError('Error', MSG_ERROR_VALIDATION_USER_PASSWORD);
       return;
     }
     if (!validatePassword(enteredUserPassword!)) {
-      handleShowModalError('Error', MSG_ERROR_VALIDATION_USER_PASSWORD_RULE, 'error');
+      handleShowModalError('Error', MSG_ERROR_VALIDATION_USER_PASSWORD_RULE);
       return;
     }
     if (!signUp(enteredUserId!, enteredUserPassword!)) {
-      handleShowModalError('Error', MSG_ERROR_FAIL_TO_SIGNUP, 'error');
+      handleShowModalError('Error', MSG_ERROR_FAIL_TO_SIGNUP);
       return;
     }
-    handleShowModalSuccess('Success', MSG_SUCCESS_TO_SIGNUP, 'success');
+    handleShowModalSuccess('Success', MSG_SUCCESS_TO_SIGNUP);
   };
   const handleSuccessToSignUp = async () => {
     navigate(KEYS_ROUTE.SIGNIN());
   };
   const handleClickBtnGoToSignIn = () => navigate(KEYS_ROUTE.SIGNIN());
-  function handleShowModalSuccess(title: string, msg: string, type?: TDialog) {
-    refModalSuccess.current?.show(title, msg, type);
-  }
-  function handleShowModalError(title: string, msg: string, type?: TDialog) {
-    refModalError.current?.show(title, msg, type);
-  }
   return (
     <S.DivContainer>
       <S.DivContainerSignUpForm>
@@ -79,8 +79,8 @@ export default function SignUp() {
       <S.ButtonGoToSignIn onClick={handleClickBtnGoToSignIn}>
         {TEXT_SIGNUP_BUTTON_GO_TO_SIGNIN}
       </S.ButtonGoToSignIn>
-      <Modal ref={refModalSuccess} onConfirm={handleSuccessToSignUp} />
-      <Modal ref={refModalError} />
+      <Modal ref={refModalSuccess} type="success" onConfirm={handleSuccessToSignUp} />
+      <Modal ref={refModalError} type="error" />
     </S.DivContainer>
   );
 }

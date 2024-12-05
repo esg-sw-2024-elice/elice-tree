@@ -57,16 +57,24 @@ export const ParagraphTitle = styled.p`
 `;
 
 export const ContentsWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  row-gap: 16px;
   flex-grow: 1;
   margin-top: 10px;
 `;
 
+export const DivNoContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+`;
+
 export const UnorderedListContainer = styled.ul`
-  margin-top: 16px;
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -76,9 +84,8 @@ export const UnorderedListContainer = styled.ul`
 `;
 
 export const DivTotal = styled.div`
-  position: absolute;
   bottom: 10%;
-  width: 80%;
+  width: 100%;
   height: 44px;
   display: flex;
   justify-content: center;
