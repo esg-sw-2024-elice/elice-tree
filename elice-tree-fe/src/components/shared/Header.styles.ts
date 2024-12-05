@@ -40,10 +40,9 @@ export const ImageLogo = styled.img`
 
 export const NavigationMenus = styled.nav`
   width: 100%;
-  margin-left: 20px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
-  column-gap: 20px;
 
   ${breakpoints.sm} {
     margin-left: 36px;
@@ -104,7 +103,7 @@ export const ButtonAuth = styled(BaseButton)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 24px;
+  margin-left: 10px;
   margin-right: 0px;
   background-color: ${PALETTE.MAIN_PURPLE};
   color: ${PALETTE.WHITE};
@@ -114,6 +113,7 @@ export const ButtonAuth = styled(BaseButton)`
 
   ${breakpoints.sm} {
     font-size: 16px;
+    margin-left: 24px;
   }
 
   ${breakpoints.lg} {

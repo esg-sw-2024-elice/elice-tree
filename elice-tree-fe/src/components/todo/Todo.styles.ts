@@ -2,7 +2,19 @@ import styled from 'styled-components';
 import { PALETTE } from '@/styles';
 import BaseButton from '@/components/shared/BaseButton';
 
-export const ListContainer = styled.li`
+export const DivContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border-bottom: 1px solid ${PALETTE.GAINSBORO};
+`;
+
+export const DivReduction = styled.div<{ isCompleted: boolean }>`
+  font-size: 12px;
+  color: ${({ isCompleted }) => (isCompleted ? PALETTE.MAIN_GREEN : PALETTE.BLACK)};
+`;
+
+export const ListTodo = styled.li`
   width: 100%;
   display: flex;
   justify-content: space-between;

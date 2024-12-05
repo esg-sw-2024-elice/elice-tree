@@ -4,48 +4,48 @@
     "content": "미사용 콘센트 뽑기",
     "isCompleted": false,
     "carbon": 0.55,
-    "tree": 0.03
+    "tree": 3
   },
   {
     "id": 2,
     "content": "쓰레기 분리 배출 하기",
     "isCompleted": false,
     "carbon": 1.37,
-    "tree": 0.07
+    "tree": 7
   },
   {
     "id": 3,
     "content": "대중교통 이용하기",
     "isCompleted": false,
     "carbon": 6.85,
-    "tree": 0.34
+    "tree": 4
   },
   {
     "id": 4,
     "content": "다회용 컵 사용하기",
     "isCompleted": false,
     "carbon": 0.55,
-    "tree": 0.03
+    "tree": 3
   },
   {
     "id": 5,
     "content": "회의실 사용 후 불끄기",
     "isCompleted": false,
     "carbon": 0.27,
-    "tree": 0.01
+    "tree": 1
   },
   {
     "id": 6,
     "content": "핸드타올 1장씩 사용하기",
     "isCompleted": false,
     "carbon": 0.14,
-    "tree": 0.01
+    "tree": 1
   },
   {
     "id": 7,
     "content": "계단 이용하기",
     "isCompleted": false,
     "carbon": 1,
-    "tree": 0.03
+    "tree": 3
   }
 ]

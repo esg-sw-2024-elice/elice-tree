@@ -71,20 +71,29 @@ export const TEXT_SIGNUP_BUTTON_GO_TO_SIGNIN = '이미 회원이신가요?';
 
 export const TEXT_TODOS_TITLE_PARAGRAPH = '탄소배출감소 동참하기';
 
+export const TEXT_TODOS_NO_CONTENT = '할 일 나무를 심어보세요!';
+
 export const TEXT_TODOS_DIV_TOTAL = (totalCarbon: number) => `\
-총 ${totalCarbon} kg 의 탄소\
+총 ${totalCarbon.toFixed(2)} kg 의 탄소\
 `;
 
-export const TEXT_TODOS_FOOTER_SUMMARY = (userId: string, lengthTodos: number) => `\
+export const TEXT_TODOS_FOOTER_SUMMARY = (userId: string, totalTree: number) => `\
 ${userId} 님은 
-${lengthTodos} 그루의 나무를 심으셨어요!
+${totalTree} 그루의 나무를 심으셨어요!
 `;
 
 export const TEXT_TODOS_FOOTER_SUMMARY_EMPTY = '할 일 나무를 심고 탄소를 절약해보세요!';
 
 export const TEXT_ADD_TODO_INPUT_PLACEHOLDER = '나무에 새길 할 일을 입력해보세요!';
 
+export const TEXT_ADD_TODO_LABEL_INPUT_CARBON = '탄소 배출량(kg)';
+
+export const TEXT_ADD_TODO_LABEL_INPUT_TREE = '나무 수(그루)';
+
 export const TEXT_ADD_TODO_BUTTON_ADD = '나무 심기';
+
+export const TEXT_TODO_REDUCTION = (tree: number, reduction: string) =>
+  `${tree} 그루로 ${reduction} g 의 탄소 배출 감소`;
 
 export const TEXT_TODO_BUTTON_DELETE = '삭제';
 
