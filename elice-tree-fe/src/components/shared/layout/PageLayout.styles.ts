@@ -27,10 +27,9 @@ export const DivContainer = styled.div<{ withHeader?: boolean }>`
   }
 `;
 
-export const MainContainer = styled.main<{ withHeader?: boolean }>`
+export const MainContainer = styled.main`
   flex: 1;
   display: flex;
   justify-content: center;
   width: 100%;
-  align-items: ${({ withHeader }) => (withHeader ? 'flex-start' : 'center')};
 `;

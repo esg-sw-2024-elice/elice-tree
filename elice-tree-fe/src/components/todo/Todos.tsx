@@ -1,7 +1,6 @@
 import * as S from './Todos.styles';
 import { useMemo } from 'react';
 import TodoElement from './Todo';
-import AddTodo from './AddTodo';
 import { useAuth } from '@/hooks/use-auth';
 import { useTodo } from '@/hooks/use-todo';
 import {
@@ -15,7 +14,7 @@ import { validateIsEmpty } from '@/utils';
 
 export default function Todos() {
   const { isAuthenticated, userId } = useAuth();
-  const { todos, addTodo, toggleTodo } = useTodo();
+  const { todos, toggleTodo } = useTodo();
   const lengthTodos = useMemo(() => todos.length, [todos]);
 
   const totalTree = useMemo(
@@ -67,7 +66,6 @@ export default function Todos() {
           {contentTodos}
           <S.DivTotal>{TEXT_TODOS_DIV_TOTAL(totalCarbon)}</S.DivTotal>
         </S.ContentsWrapper>
-        <AddTodo onClick={addTodo} />
       </S.DivWrapperList>
       <S.Heading1Summary>{summaryFooter}</S.Heading1Summary>
     </S.DivContainer>
