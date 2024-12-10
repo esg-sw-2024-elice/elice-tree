@@ -74,7 +74,7 @@ export const TEXT_TODOS_TITLE_PARAGRAPH = '탄소배출감소 동참하기';
 export const TEXT_TODOS_NO_CONTENT = '할 일 나무를 심어보세요!';
 
 export const TEXT_TODOS_DIV_TOTAL = (totalCarbon: number) => `\
-총 ${totalCarbon.toFixed(2)} kg 의 탄소\
+총 ${totalCarbon.toFixed(2)} g 의 탄소 절감\
 `;
 
 export const TEXT_TODOS_FOOTER_SUMMARY = (userId: string, totalTree: number) => `\
